@@ -95,6 +95,17 @@ body {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
+}
+.notification {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  background-color: #0465a6;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 50%;
+  font-family: "Josefin Sans", sans-serif;
 }
 .nav_item:hover {
   background-color: rgb(226, 167, 29);
@@ -126,7 +137,6 @@ body {
   transition: background-color 0.3s;
 }
 .card:hover {
-
   background-color: #fff;
 }
 .card_img {
@@ -180,8 +190,7 @@ body {
   display: block;
 }
 
-
-.details_container{
+.details_container {
   padding: 30px;
   display: flex;
   justify-content: center;
@@ -189,42 +198,41 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-.details_container img{
+.details_container img {
   min-width: 40%;
   border-radius: 5px;
   border: 1px solid lightgray;
-
 }
-.details_right{
+.details_right {
   width: 50%;
 }
-.details_right span{
+.details_right span {
   font-family: "Josefin Sans", sans-serif;
-  color:  rgb(226, 167, 29);
+  color: rgb(226, 167, 29);
 }
-.details_right h3{
+.details_right h3 {
   padding: 10px 0px;
 }
-.Ingredients{
+.Ingredients {
   border-radius: 5px;
   border: 1px solid black;
 }
-.Ingredients div{
+.Ingredients div {
   font-family: "Josefin Sans", sans-serif;
   padding: 15px 10px;
-border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
-.btn1{
+.btn1 {
   all: unset;
   padding: 10px;
   border-radius: 5px;
   font-family: "Josefin Sans", sans-serif;
-background-color: #0465a6;
-color: #fff;
-cursor: pointer;
+  background-color: #0465a6;
+  color: #fff;
+  cursor: pointer;
 }
-.btn2{
+.btn2 {
   all: unset;
   padding: 10px;
   border-radius: 5px;
@@ -234,38 +242,38 @@ cursor: pointer;
   color: #fff;
   cursor: pointer;
 }
- .hide{
+.hide {
   display: none;
- }
+}
 
-
- .footer_container{
- 
+.footer_container {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   margin-top: 40px;
- }
- .footer_container h2{
-  color:  rgb(58, 126, 235);
+}
+.footer_container h2 {
+  color: rgb(58, 126, 235);
   padding: 5px 0px;
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
- }
- .footer_container p{
+}
+.footer_container p {
   padding: 10px 0px;
   text-align: center;
- }
-@media (max-width: 720px){
-  .details_right{
+}
+.color {
+  color: #067530;
+}
+@media (max-width: 720px) {
+  .details_right {
     width: 80%;
   }
-  .details_container img{
+  .details_container img {
     width: 70%;
   }
-  .content h1{
+  .content h1 {
     font-size: 35px;
   }
-  .input input{
+  .input input {
     width: 70%;
   }
 }
-

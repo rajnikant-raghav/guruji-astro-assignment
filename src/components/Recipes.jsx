@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setDetails } from "../slices/detailsSlice";
+import { setDetails, incrementCount } from "../slices/detailsSlice";
 import Loading from "./Loading";
 const Recipes = ({ recipe, identity }) => {
   const [isTrue, setIsTrue] = useState(false);
-  // if (identity === "favorite") setIsTrue(true);
+
   const [savedData, setSavedData] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const Recipes = ({ recipe, identity }) => {
   };
   useEffect(() => {
     if (identity === "favorite") setIsTrue(true);
+
     const storedData = localStorage.getItem("myData");
 
     if (storedData) {
@@ -39,7 +40,25 @@ const Recipes = ({ recipe, identity }) => {
         "myData",
         JSON.stringify([...savedData, recipe[idx]])
       );
+      dispatch(incrementCount(savedData.length));
     }
+  };
+
+  const handleDelete = (idx) => {
+    if (savedData[idx]) {
+      // Remove the specified key from localStorage
+      savedData.splice(idx, 1);
+      localStorage.setItem("myData", JSON.stringify([...savedData]));
+      alert(`Data with key "${idx}" has been deleted.`);
+    } else {
+      alert(`Data with key "${idx}" does not exist in localStorage.`);
+    }
+    dispatch(incrementCount(savedData.length));
+  };
+  const checkBookmark = (value) => {
+    return savedData?.some((item) => item.recipe.label === value)
+      ? true
+      : false;
   };
   return (
     <div className="cards_container">
@@ -60,13 +79,28 @@ const Recipes = ({ recipe, identity }) => {
               className={isTrue ? "hide" : "card_favorite"}
               onClick={() => handleFavorite(idx)}
             >
-              <i class="fa-regular fa-bookmark"></i>
+              <i
+                className={
+                  checkBookmark(val.recipe.label)
+                    ? "fa-solid fa-bookmark"
+                    : "fa-regular fa-bookmark"
+                }
+              ></i>
             </span>
+            {isTrue ? (
+              <span className="card_favorite" onClick={() => handleDelete(idx)}>
+                <i style={{ color: "red" }} className="fa-solid fa-trash"></i>
+              </span>
+            ) : (
+              ""
+            )}
           </div>
         ))
       ) : (
         <div>
-          <p style={{padding:'50px'}} className={isTrue ? "" : "hide"}>No recipe in your favorite list.</p>
+          <p style={{ padding: "50px" }} className={isTrue ? "" : "hide"}>
+            No recipe in your favorite list.
+          </p>
           <div className={isTrue ? "hide" : ""}>
             <Loading />
           </div>
