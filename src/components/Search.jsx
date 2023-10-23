@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Recipes from "./Recipes";
 // import { recipe } from "../data";
 const Search = () => {
-  const [recipe, setRecipe] = useState();
+  const [recipe, setRecipe] = useState([]);
   const [query, setQuery] = useState("pizza");
   const [input, setInput] = useState("");
   const API_KEY = "864f900480eab44945907342ee7d3d86";
   const APP_ID = "c0ff9c8f";
 
   const handleSubmit = () => {
-    setQuery(input)
+    setQuery(input);
   };
   useEffect(() => {
     fetch(
@@ -31,7 +31,11 @@ const Search = () => {
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
-      <Recipes recipe={recipe} identity={"search"} />
+      {recipe.length > 0 ? (
+        <Recipes recipe={recipe} identity={"search"} />
+      ) : (
+        <p style={{textAlign:'center',color:'red',marginTop:'50px'}}>'{query}' keyword is not exist in our database!</p>
+      )}
     </div>
   );
 };
